@@ -1,0 +1,20 @@
+{
+  "name": "khoi",
+  "version": "0.0.1",
+  "authors": [
+    "Khoi Tran <emails.khoi@gmail.com>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-masonry": "~0.11.0"
+  }
+}
