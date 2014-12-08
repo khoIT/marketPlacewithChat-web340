@@ -1,0 +1,19 @@
+<div class="products col-xs-8">
+<h1>All Products | Awesome Marketplace</h1>
+
+    <% @products.each do |product| %>
+      <div class="product-item">
+        <%= link_to image_tag(product.img_url, size:"240x250"), product_path(product) %>
+         <br>
+        Title: <%= product.name %><br>
+        Price: $<%= product.price %><br>
+        Category: <%= product.category %><br>
+      </div>
+    <% end %>
+
+
+<br>
+<!-- <%= link_to 'New Product', new_product_path %> -->
+
+</div>
+<%= render "chatall" %>

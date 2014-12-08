@@ -16,6 +16,7 @@ body {
 .masonry-photo {
     margin: 1em;
     display: none;
+    max-width: 400px;
 }
 
 .masonry-photo.loaded {
@@ -27,10 +28,10 @@ body {
 .masonry,
 .masonry li { /* apply before masonry add class */
     position: absolute; /* important to add it before enter animation start */
-    
+
     -webkit-transition-duration: .7s;
     transition-duration: .7s;
-    
+
     -webkit-transition-property: all;
     transition-property: all;
 }

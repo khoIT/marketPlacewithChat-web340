@@ -18,36 +18,39 @@
         <script src="bower_components/imagesloaded/imagesloaded.js"></script>
 
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+        <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
         <script src="javascript/angularjs/app.js"></script>
-        
+
         <!-- load stylesheet !-->
         <link href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/united/bootstrap.min.css" rel="stylesheet">
         <link href="stylesheets/main.css" rel="stylesheet">
     </head>
 
-    <title>Chute App</title>
+    <title>Market Place</title>
     <body class="container" ng-app="khoiApp">
         <div class="hero-unit">
-            <h1>Surf Wall Hi yuki</h1>
-            <p>A response to code challenge at Chute</p>
+            <h1>Your Smart Store</h1>
+            <p>Here, you can find anything</p>
         </div>
         <hr>
 
         <div class="row-fluid" ng-controller="MainCtrl">
             <div class="span12">
                 <div class="btn-group">
-                    <button class="btn btn-primary" ng-click="add()">Load more Images</button>
-                    <button class="btn btn-default" ng-click="remove()">Remove an Image</button>
+                    <button class="btn btn-primary" ng-click="add()">More products!</button>
+                    <button class="btn btn-default" ng-click="remove()">Clear 1</button>
                 </div>
-                
-                <div data-masonry>
+
+                <div masonry>
                     <div class="masonry-photo" ng-repeat="photo in photos">
-                        <img ng-src="{{ photo.src }}" alt="A masonry brick">
+                      <a ng-href="products/{{photo.id}}">
+                        <img ng-src="{{ photo.url }}" alt="A masonry brick">
+                      </a>
                     </div>
                 </div>
             </div>
-        </div>        
-        
+        </div>
+
         </div>
     </body>
 </html>

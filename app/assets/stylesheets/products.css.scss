@@ -1,0 +1,83 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#chatbox{
+  display: table;
+  height: 500px;
+  max-height: 500px;
+  width: 100%;
+  border: 1px solid #000;
+  table-layout: fixed;
+}
+
+.chatMessageHolder{
+  display: table-cell;
+  vertical-align: bottom;
+  overflow: hidden;
+  max-height: 500px;
+}
+.amessage{
+  display: block;
+  clear: both;
+  margin-top: 10px;
+  overflow: auto;
+}
+.textMessage{
+  background: #cbe9f3;
+  text-align: right;
+  border: 1px solid #ccc;
+  position: relative;
+  margin-right:0.8rem;
+  padding-left: 0px !important;
+}
+.inputMessage{
+  vertical-align: bottom;
+}
+.chatTitle{
+  background:#00b0ff;
+  color: #fff;
+  font-size: 1.2em;
+}
+.avatar{
+  width: 30px;
+}
+.avatar-holder{
+  float: right;
+  margin-right: 20px;
+}
+.product-item2{
+  display: inline;
+  border:black;
+  border-width:1px;
+  border-style:solid;
+}
+
+.product-item{
+  border:black;
+  border-width:1px;
+  border-style:solid;
+  width:250px;
+  height:310px;
+  margin:5px;
+  padding:5px;
+  text-align:left;
+  display:inline-block
+}
+
+table{
+  width:100%;
+}
+.chat{
+  display: inline;
+  float: right;
+}
+.chatContainer{
+  height: 500px;
+  max-height: 500px;
+  overflow: scroll;
+}
+.products{
+  display: inline;
+  float: left;
+}

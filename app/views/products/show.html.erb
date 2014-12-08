@@ -1,0 +1,12 @@
+<div class="products col-xs-8">
+<h1>Product Detail | Awesome Marketplace</h1>
+<%= image_tag(@product.img_url, size:"500x500")%>
+<br>
+Title: <%= @product.name %><br>
+Price: $<%= @product.price %><br>
+Category: <%= @product.category %><br>
+
+<br>
+<%= link_to 'Back to All Products', "/#" %>
+</div>
+<%= render "chat" %>

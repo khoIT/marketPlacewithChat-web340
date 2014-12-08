@@ -4,59 +4,45 @@
  * License: MIT
  */
 
- var khoiApp = angular.module('khoiApp', ['wu.masonry', 'ngStorage']);
+         
+    khoiApp.controller('MainCtrl', function ($scope, $http, $timeout) {
 
-    khoiApp.controller('MainCtrl', function ($scope, $localStorage, $http, $timeout) {
-        if (typeof $localStorage.photos === 'undefined'){
-          $scope.photos = [];
-          //pulling data from chute album
-          $http.get('https://api.getchute.com/v2/albums/aus6kwrg/assets?per_page=5&page=1').
-            success(function(data, status, headers, config) {
-              //if storage not exist then create new photos array
-
-              $scope.urls_from_chute = data["data"];
-              for (var key in $scope.urls_from_chute){
-                var photo = {};
-                photo.url = $scope.urls_from_chute[key]["url"] + "/fit/450x300";
-                photo.id = $scope.photos.length+1;
-                $scope.photos.push(photo);
-              }
-              //update storage version of photos
-              $localStorage.photos = JSON.stringify($scope.photos);
-              $localStorage.nextPage = data["pagination"]["next_page"];
-
-            }).error(function(data, status, headers, config) {
-              // log error
-            });
-        } else {
-         $scope.photos = JSON.parse($localStorage.photos);
-        }
-
+        $scope.photos = [];
+        //pulling data from chute album
+        $http.get('https://api.getchute.com/v2/albums/aus6kwrg/assets?per_page=5&page=1').
+          success(function(data, status, headers, config) {
+            
+            $scope.urls_from_chute = data["data"];
+            
+            for (var key in $scope.urls_from_chute){
+              $scope.photos.push({src: $scope.urls_from_chute[key]["url"] + "/fit/450x300"});              
+            }             
+            
+            $scope.next_page = (data["pagination"]["next_page"]);
+            
+          }).error(function(data, status, headers, config) {
+            // log error
+          });            
+                    
         //pull all images of next page and update $scope.next_page
         $scope.add = function add() {
-          $http.get($localStorage.nextPage).
+          $http.get($scope.next_page).
             success(function(data, status, headers, config) {
               $scope.urls_from_chute = data["data"];
               for (var key in $scope.urls_from_chute){
-                var photo = {};
-                photo.url = $scope.urls_from_chute[key]["url"] + "/fit/450x300";
-                photo.id = $scope.photos.length+1;
-                $scope.photos.push(photo);
-              }
-              //update storage version of photos
-              $localStorage.photos = angular.toJson($scope.photos);
-              $localStorage.nextPage = data["pagination"]["next_page"];
+                $scope.photos.push({src: $scope.urls_from_chute[key]["url"] + "/fit/500x300"});              
+              }  
+              $scope.next_page = (data["pagination"]["next_page"]);
             }).error(function(data, status, headers, config) {
               // log error
-            });
+            });             
         };
 
         $scope.remove = function remove() {
             var random = Math.random();
             $scope.photos.splice(
                 (random * $scope.photos.length), 1
-            )
-            $localStorage.photos = angular.toJson($scope.photos);
+            )            
         };
     });
 
@@ -74,9 +60,9 @@
       var timeout = null;
       this.preserveOrder = false;
       this.loadImages = true;
-
+   
       this.scheduleMasonryOnce = function scheduleMasonryOnce() {
-        var args = arguments;
+        var args = arguments; 
         var found = schedule.filter(function filterFn(item) {
             return item[0] === args[0];
           }).length > 0;
@@ -111,10 +97,10 @@
         if (destroyed) {
           return;
         }
-        function _append() {
-
-          if (Object.keys(bricks).length === 0) {
-            $element.masonry('resize');
+        function _append() { 
+          
+          if (Object.keys(bricks).length === 0) {            
+            $element.masonry('resize');      
           }
           if (bricks[id] === undefined) {
             // Keep track of added elements.
@@ -131,7 +117,7 @@
           _layout();
         } else if (self.preserveOrder) {
           _append();
-          element.imagesLoaded(_layout);
+          element.imagesLoaded(_layout); 
         } else {
           element.imagesLoaded(function() {
             _append();
@@ -158,59 +144,60 @@
         $scope.$emit('masonry.destroyed');
         bricks = [];
       };
-
+      
     }
   ]);
-
+  
   masonry.directive('masonry', function masonryDirective() {
-
+    
     var directiveDefinitionObject = {
       restrict: 'EA',
       controller: 'MasonryCtrl',
       link: {
         pre: function preLink(scope, element, attrs, ctrl) {
-
+          
           var attrOptions = scope.$eval(attrs.masonry || attrs.masonryOptions);
-
+          
           var options = angular.extend({
               itemSelector: attrs.itemSelector || '.masonry-photo',
               columnWidth: parseInt(attrs.columnWidth, 10) || attrs.columnWidth
             }, attrOptions || {});
+          
           element.masonry(options);
-
+          
           var loadImages = scope.$eval(attrs.loadImages);
           ctrl.loadImages = !loadImages;
-
+          
           var preserveOrder = scope.$eval(attrs.preserveOrder);
 
-          ctrl.preserveOrder = preserveOrder !== false && attrs.preserveOrder !== undefined;
-
+          ctrl.preserveOrder = preserveOrder !== false && attrs.preserveOrder !== undefined;      
+      
           scope.$emit('masonry.created', element);
           scope.$on('$destroy', ctrl.destroy);
         }
       }
     };
-    return directiveDefinitionObject;
+    return directiveDefinitionObject;   
   })
 
   masonry.directive('masonryPhoto', function masonryBrickDirective() {
     return {
       restrict: 'AC',
       require: '^masonry',
-      scope: true,
+      scope: true, 
       link: {
         pre: function preLink(scope, element, attrs, ctrl) {
           var id = scope.$id, index;
-
+          
           ctrl.appendBrick(element, id);
-
+          
           element.on('$destroy', function () {
             ctrl.removeBrick(id, element);
-          });
-
+          });          
+                
           //everytime $index changes, relayout the gallery
           scope.$watch('$index', function () {
-            if (index !== undefined && index !== scope.$index) {
+            if (index !== undefined && index !== scope.$index) {              
               ctrl.scheduleMasonryOnce('layout');
             }
             index = scope.$index;

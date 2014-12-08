@@ -1,0 +1,24 @@
+<body>
+  <div class="chat col-xs-4" ng-controller="ChatController">
+    <!-- chatbox -->
+    <div class="chatTitle">
+      <div align="center">Chat</div>
+    </div>
+    <div class="chatContainer">
+    <div id="chatbox">
+      <div class="chatMessageHolder">
+        <div id="conversation" class="amessage" ng-repeat="message in messages">
+          <div class="avatar-holder"><img class="avatar" ng-src="http://res.cloudinary.com/cnc/image/upload/c_thumb,g_face,h_200,r_max,w_200/v1414475502/kxtjoozbaozbi13csucq.png" src="http://res.cloudinary.com/cnc/image/upload/c_thumb,g_face,h_200,r_max,w_200/v1414475502/kxtjoozbaozbi13csucq.png"></div>
+          <div class="col-xs-8 textMessage">{{message.text}}</div>
+          <div class="col-xs-2 textMessage"><b>:{{message.user}}</b></div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <!-- chatinput -->
+    <div class="inputmessage">
+      <input type="text" ng-model="chatmessage" ng-enter="sendMessage()">
+      <button type="button" class="btn btn-primary" ng-click="sendMessage()">Send</button>
+    </div>
+  </div>
+  </body>
