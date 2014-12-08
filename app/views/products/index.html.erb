@@ -1,6 +1,7 @@
-<div class="products col-xs-8">
-<h1>All Products | Awesome Marketplace</h1>
 
+
+<div class="products col-xs-8">
+	<title>List of Products</title>
     <% @products.each do |product| %>
       <div class="product-item">
         <%= link_to image_tag(product.img_url, size:"240x250"), product_path(product) %>

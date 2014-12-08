@@ -6,7 +6,7 @@
 
  var khoiApp = angular.module('khoiApp', ['wu.masonry', 'ngStorage']);
 
-    khoiApp.controller('MainCtrl', function ($scope, $localStorage, $http, $timeout) {
+    khoiApp.controller('MainCtrl', function ($scope, $localStorage, $http, $timeout) {        
         if (typeof $localStorage.photos === 'undefined'){
           $scope.photos = [];
           //pulling data from chute album
