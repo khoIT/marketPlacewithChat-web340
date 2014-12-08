@@ -16,7 +16,7 @@ body {
 .masonry-photo {
     margin: 1em;
     display: none;
-    max-width: 400px;
+    max-width: 300px;
 }
 
 .masonry-photo.loaded {
@@ -56,6 +56,6 @@ body {
 }
 
 .container{
-	width: 90% !important;
+	width: 95% !important;
 }
 

@@ -16,45 +16,50 @@
         <script src="bower_components/outlayer/outlayer.js"></script>
         <script src="bower_components/masonry/masonry.js"></script>
         <script src="bower_components/imagesloaded/imagesloaded.js"></script>
+        <script src="https://code.angularjs.org/1.3.0-rc.5/angular.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script>
 
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
         <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
         <script src="javascript/angularjs/app.js"></script>
+
+        <script src="javascript/angularjs/ng-infinite-scroll.js"></script>
 
         <!-- load stylesheet !-->
         <link href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/united/bootstrap.min.css" rel="stylesheet">
         <link href="stylesheets/main.css" rel="stylesheet">
+        <style>
+          ul {
+          max-height: 400px;
+          overflow: auto;
+          list-style-type: none;
+          }>
+        </style>
     </head>
 
     <title>Market Place</title>
-    <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="/">Home</a></li>
-          <li><a href="#/about">About</a></li>
-        </ul>
-        <h3 class="text-muted">Market Place</h3>
-        <hr>
-    </div>
     <body class="container" ng-app="khoiApp">
         <div class="hero-unit">
             <h1>Your Smart Store</h1>
             <p>Here, you can find anything</p>
         </div>
         <hr>
-
         <div class="row-fluid" ng-controller="MainCtrl">
+
             <div class="span12">
                 <div class="btn-group">
                     <button class="btn btn-primary" ng-click="add()">More products!</button>
-                    <!--<button class="btn btn-default" ng-click="remove()">Clear 1</button>!-->
+                    <button class="btn btn-default" ng-click="clear()">Something else</button>
+                    <button class="btn btn-default" ng-click="restart()">Start again</button>
                 </div>
-
-                <div masonry>
-                    <div class="masonry-photo" ng-repeat="photo in photos">
+                <ul class="panel" scroller>
+                  <div masonry>
+                    <li data-ng-repeat="photo in photos" class="masonry-photo" >
                       <a ng-href="products/{{photo.id}}">
                         <img ng-src="{{ photo.url }}" alt="A masonry brick">
                       </a>
-                    </div>
+                    </li>
+                  </div>
+                </ul>
                 </div>
             </div>
         </div>

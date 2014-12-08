@@ -1,11 +1,11 @@
-var khoiApp2 = angular.module("khoiApp", ["AngularSocketIO", "ui.bootstrap"]);
+var chatApp = angular.module("chatApp", ["AngularSocketIO", "ui.bootstrap"]);
 
 $(document).on('ready page:load', function(arguments) {
-    angular.bootstrap(document.body, ['khoiApp'])
+    angular.bootstrap(document.body, ['chatApp'])
 });
 
 
-khoiApp2.controller("ProductController", ["$scope", "$http", function($scope, $http) {
+chatApp.controller("ProductController", ["$scope", "$http", function($scope, $http) {
 	$scope.products = [];
 
 	$http.get("http://localhost:3000/products.json").
@@ -19,7 +19,7 @@ khoiApp2.controller("ProductController", ["$scope", "$http", function($scope, $h
 }]);
 
 //chat app
-khoiApp2.controller("ChatAllController", ["$scope", "socket", "$window", function($scope, socket, $window) {
+chatApp.controller("ChatAllController", ["$scope", "socket", "$window", function($scope, socket, $window) {
    $scope.messages = [];
 
     //everything in here happens when I click the send button
@@ -67,7 +67,7 @@ khoiApp2.controller("ChatAllController", ["$scope", "socket", "$window", functio
 }]);
 
 //chat app
-khoiApp2.controller("ChatController", ["$scope", "socket", "$window", "$location", function($scope, socket, $window, $location) {
+chatApp.controller("ChatController", ["$scope", "socket", "$window", "$location", function($scope, socket, $window, $location) {
    $scope.messages = [];
    $scope.id=(/products\/(\d+)/.exec($location.absUrl())[1]);
 
@@ -104,7 +104,7 @@ khoiApp2.controller("ChatController", ["$scope", "socket", "$window", "$location
       $scope.messages.push(msg);
     });
 }]);
-khoiApp2.directive('ngEnter', function(){
+chatApp.directive('ngEnter', function(){
     return function (scope, element, attrs){
       element.bind("keydown keypress", function(event){
         if(event.which === 13){
