@@ -66,4 +66,6 @@ ul {
   margin-top: 20px;
 }
 
-
+.nav-pills >li > a.login_button{
+  display: inline-block;
+}

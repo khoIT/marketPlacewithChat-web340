@@ -1,26 +1,50 @@
-<h2>Log in</h2>
+<div id="wrapper">
+  <!--SLIDE-IN ICONS-->
+  <div class="user-icon"></div>
+  <div class="pass-icon"></div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <%= form_for(resource, html:{class:'login-form'}, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="header">
+      <h1>Login Form</h1>
+      <span>Toast to the begining of your smart stores!</span><!--END DESCRIPTION-->
     </div>
-  <% end -%>
+    <div class="content">
+      <%= f.email_field :email, placeholder:"Email", class:"input username", autofocus: true %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+      <%= f.password_field :password, placeholder:"Password", class:"input password", autocomplete: "off" %>
 
-<%= render "devise/shared/links" %>
+      <% if devise_mapping.rememberable? -%>
+          <%= f.check_box :remember_me, id:"inline" %>
+          <%= f.label :remember_me, id:"inline" %>
+      <% end -%>
+    </div>
+    <div class="footer">
+      <%= f.submit "Log in", class:"button" %>
+      <%= render "devise/shared/links" %>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".username").focus(function() {
+    $(".user-icon").css("left","-48px");
+  });
+  $(".username").blur(function() {
+    $(".user-icon").css("left","0px");
+  });
+
+  $(".password").focus(function() {
+    $(".pass-icon").css("left","-48px");
+  });
+  $(".password").blur(function() {
+    $(".pass-icon").css("left","0px");
+  });
+  $(".password-confirm").focus(function() {
+    $(".pass-icon").css("left","-48px");
+  });
+  $(".password-confirm").blur(function() {
+    $(".pass-icon").css("left","0px");
+  });
+});
+</script>
