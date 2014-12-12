@@ -5,7 +5,8 @@ class ProductsController < ApplicationController
   # GET /products.json
   def index
     @products = Product.all
-    @top_view = Product.limit(10).order('view desc')
+    @top_view = Product.limit(5).order('view desc')
+    @categories = Category.all
   end
 
   # GET /products/1

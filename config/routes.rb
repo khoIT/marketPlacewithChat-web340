@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # Example of regular route:
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  get 'category/:id' => 'categories#show_product', as: :products_of_category
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products

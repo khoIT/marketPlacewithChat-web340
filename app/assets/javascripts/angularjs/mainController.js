@@ -155,7 +155,7 @@ chatApp.controller("ChatAllController", ["$scope", "socket", "$window", function
 
     socket.on('connect', function(){
       // call the server-side function 'adduser' and send one parameter (value of prompt)
-      socket.emit('addUser', prompt("What's your name?"));
+      socket.emit('addUser', 'khoi');
     });
 
     // listener, whenever the server emits 'updatechat', this updates the chat body
@@ -194,7 +194,8 @@ chatApp.controller("ChatController", ["$scope", "socket", "$window", "$location"
 
     socket.on('connect', function(){
       // call the server-side function 'adduser' and send one parameter (value of prompt)
-      socket.emit('addUser', prompt("What's your name?"));
+      var name = document.getElementById('hidden').getAttribute('data-username');
+      socket.emit('addUser',name );
     });
 
     // listener, whenever the server emits 'updatechat', this updates the chat body

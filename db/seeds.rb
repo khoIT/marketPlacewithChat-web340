@@ -8,6 +8,7 @@
 u1 = User.create(name: 'Khoi', password:'123!@#ab', email: 'khoitran_2014@depauw.edu')
 u2 = User.create(name: 'Rajat', password:'123!@#ab', email: 'rajatkumar_2015@depauw.edu')
 u3 = User.create(name: 'Yuki', password:'123!@#ab', email: 'yukinakano_2014@depauw.edu')
+u3 = User.create(name: 'Khoi', password:'123!@#ab', email: 'emails.khoi@gmail.com')
 c1 = Category.create(name: 'Arts & Crafts');
 c2 = Category.create(name: 'Bikes');
 c3 = Category.create(name: 'Books');

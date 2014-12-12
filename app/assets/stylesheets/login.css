@@ -179,7 +179,7 @@ CONTENT
 	-webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
 }
 
-.user-icon, .pass-icon {
+.user-icon, .pass-icon, .passSignup-icon, .email-icon, .passconfirm-icon{
 	width: 46px;
 	height: 47px;
 	display: block;
@@ -198,14 +198,26 @@ CONTENT
 	top:147px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
 	background: rgba(65,72,72,0.75) url(/assets/user-icon.png) no-repeat center;
 }
+.email-icon {
+	top:202px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
+	background: rgba(65,72,72,0.75) url(/assets/user-icon.png) no-repeat center;
+}
 
 .pass-icon {
-	top:221px;
+	top:220px;
 	background: rgba(65,72,72,0.75) url(/assets/pass-icon.png) no-repeat center;
 }
 
+.passSignup-icon {
+	top:275px;
+	background: rgba(65,72,72,0.75) url(/assets/pass-icon.png) no-repeat center;
+}
+.passconfirm-icon {
+	top:370px;
+	background: rgba(65,72,72,0.75) url(/assets/pass-icon.png) no-repeat center;
+}
 /* Animation */
-.input, .user-icon, .pass-icon, .button, .register {
+.input, .user-icon, .passSignup-icon, .pass-icon, .passconfirm-icon, .email-icon, .button, .register {
 	transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	-webkit-transition: all 0.5s;
