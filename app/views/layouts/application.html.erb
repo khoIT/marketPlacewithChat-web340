@@ -6,6 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
   <script type="application/javascript" src="https://cdn.socket.io/socket.io-1.1.0.js"></script>
+  <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
 
   <%= csrf_meta_tags %>
   <link href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/united/bootstrap.min.css" rel="stylesheet">
@@ -33,12 +34,12 @@
         <h3 class="text-muted">Market Place</h3>
        	<hr>
     </div>
- 	</div>
+ 	
 
  	<%= yield %>
 
 
-    </div>
+</div>
 
 
 </body>

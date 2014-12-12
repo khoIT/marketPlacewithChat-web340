@@ -1,20 +1,39 @@
-
-
-<div class="products col-xs-8">
-	<title>List of Products</title>
-    <% @products.each do |product| %>
-      <div class="product-item">
-        <%= link_to image_tag(product.img_url, size:"240x250"), product_path(product) %>
-         <br>
+<title>Market Place</title>
+<body>
+  <div class="hero-unit">
+      <h1>Your Smart Store</h1>
+      <p>Here, you can find anything</p>
+  </div>
+  <hr>
+  <div class="row-fluid">
+    <div style="display:block">
+      <span class="label label-default">Top Products!</span>
+    </div>
+    <% @top_view.each do |product| %>
+      <div class="top-products">
+          <%= link_to image_tag(product.img_url), product_path(product)%>
+        <br>
         Title: <%= product.name %><br>
         Price: $<%= product.price %><br>
-        Category: <%= product.category %><br>
+        Category: <%= Category.find_by_id(product.category).name %><br>
       </div>
+
     <% end %>
-
-
-<br>
-<!-- <%= link_to 'New Product', new_product_path %> -->
-
-</div>
-<%= render "chatall" %>
+  </div>
+  <div class="row-fluid" ng-controller="MainCtrl">
+    <div class="btn-group">
+        <button class="btn btn-primary" ng-click="add()">More products!</button>
+        <button class="btn btn-default" ng-click="clear()">Something else</button>
+        <button class="btn btn-default" ng-click="restart()">Start again</button>
+    </div>
+    <ul class="panel" scroller>
+      <div masonry>
+        <li data-ng-repeat="photo in photos" class="masonry-photo" >
+          <a ng-href="products/{{photo.id}}">
+            <img ng-src="{{ photo.url }}" alt="A masonry brick">
+          </a>
+        </li>
+      </div>
+    </ul>
+  </div>
+</body>

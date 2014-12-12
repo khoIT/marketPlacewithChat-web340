@@ -77,12 +77,16 @@ table{
   max-height: 500px;
   overflow: scroll;
 }
-.products{
-  display: inline;
+.top-products{
+  margin: 1em;
+  max-width: 200px;
   float: left;
 }
 
-.container{
-  width: 90% !important;
+.products{
+  margin: 1em;
+  max-width: 400px;
+  float: left;
 }
+
 
