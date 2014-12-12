@@ -5,18 +5,6 @@
       <p>Here, you can find anything</p>
   </div>
   <hr>
-  <div class="row-fluid">
-    <div style="display:block">
-      <h4><a>Category</a></h4>
-    </div>
-    <div id="category-wall" class="well">
-    <% @categories.each do |cat| %>
-      <a class="btn btn-default" href="<%= cat.id %>">
-        <%= cat.name %>
-      </a>
-    <% end %>
-    </div>
-  </div>
 
   <div class="row-fluid">
     <div style="display:block">
@@ -39,19 +27,32 @@
 
   <div class="row-fluid" ng-controller="MainCtrl">
     <div class="btn-group">
-        <button class="btn btn-primary" ng-click="add()">More products!</button>
+        <button class="btn btn-primary" ng-click="addProducts()">Show only Category!</button>
         <button class="btn btn-default" ng-click="clear()">Something else</button>
         <button class="btn btn-default" ng-click="restart()">Start again</button>
+    </div>
+    <div id="category-wall" class="well">
+    <% @categories.each do |cat| %>
+      <a class="btn btn-default" href="<%= cat.id %>">
+        <%= cat.name %>
+      </a>
+    <% end %>
     </div>
     <ul class="panel" scroller>
       <div masonry>
         <li data-ng-repeat="photo in photos" class="masonry-photo" >
           <a ng-href="products/{{photo.id}}">
-            <img ng-src="{{ photo.url }}" alt="A masonry brick">
+            <img  ng-src="{{ photo.url}}">
           </a>
         </li>
       </div>
     </ul>
   </div>
+  <div id="gallery-bottom">
+    bottom
+    </div>
 </body>
 
+<script>
+
+ </script>

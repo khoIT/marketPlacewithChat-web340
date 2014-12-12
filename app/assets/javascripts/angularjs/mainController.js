@@ -12,12 +12,12 @@ $(document).on('ready page:load', function(arguments) {
            callback(result);
           });
       };
-
       return data;
     });
 
     chatApp.controller('MainCtrl', function ($scope, $localStorage, $http, dataFactory) {
 
+      //take in url and set $scope.data to be an array of url
       function getPhotos(url){
         dataFactory(url, function(results){
           //check for duplicates
@@ -28,11 +28,32 @@ $(document).on('ready page:load', function(arguments) {
             }//end if
           }
           $scope.data = results;
-          updateDisplay();
+          updateDisplay($scope.data);
         });
       }
 
-      function updateDisplay(){
+      function getProducts(json_source){
+          $.getJSON( json_source, function( data ) {
+            var items = [];
+            $scope.products = data;
+            updateDisplayProduct($scope.products);
+          });
+      }
+
+      function updateDisplayProduct(data){
+        var photoLinks = data;
+        //no need to store in localStorage because tags are reset
+        //everytime reload
+        for (var key in photoLinks){
+          var photo = {};
+          photo.url = photoLinks[key].img_url;
+          photo.id = ++$localStorage.id;
+          $scope.photos.push(photo);
+        }
+        window.setTimeout( scroll, 100 );
+      }
+
+      function updateDisplay(data){
         $localStorage.id == null ? $localStorage.id = 0:null;
         //if reach the end of api
         if ($localStorage.nextPage === null){
@@ -45,7 +66,9 @@ $(document).on('ready page:load', function(arguments) {
         } else { //copy the existing database to $scope.photos
           $scope.photos = JSON.parse($localStorage.photos);
         }
-        var photoLinks = $scope.data.data;
+
+        var photoLinks = data.data;
+
         for (var key in photoLinks){
           var photo = {};
           photo.url = photoLinks[key].url + "/fit/400x300";
@@ -55,11 +78,23 @@ $(document).on('ready page:load', function(arguments) {
         //update storage version of photos
         $localStorage.photos = angular.toJson($scope.photos);
         $localStorage.nextPage = $scope.data.pagination.next_page;
+        //scroll();
+        window.setTimeout( scroll, 100 );
       }
+
+      function scroll(){
+       document.getElementById('gallery-bottom').scrollIntoView();
+      };
 
       //intialize gallery
       first_url = 'https://api.getchute.com/v2/albums/aus6kwrg/assets?per_page=5&page=1';
       getPhotos(first_url);
+
+      $scope.addProducts = function addProducts(){
+        $localStorage.$reset();
+        $scope.photos = [];
+        getProducts('products.json');
+      }
 
       $scope.add = function add() {
         $http.get($localStorage.nextPage).

@@ -16,5 +16,6 @@ $(function () {
            .toggleClass('btn-default', !follow);
     return false;
   });
+
 });
 

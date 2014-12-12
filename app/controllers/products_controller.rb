@@ -3,10 +3,14 @@ class ProductsController < ApplicationController
 
   # GET /products
   # GET /products.json
-  def index
+  def welcome
     @products = Product.all
     @top_view = Product.limit(5).order('view desc')
     @categories = Category.all
+  end
+  def index
+    @products = Product.all
+    render json: @products
   end
 
   # GET /products/1
