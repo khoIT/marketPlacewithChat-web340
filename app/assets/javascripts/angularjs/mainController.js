@@ -50,7 +50,7 @@ $(document).on('ready page:load', function(arguments) {
           photo.id = ++$localStorage.id;
           $scope.photos.push(photo);
         }
-        window.setTimeout( scroll, 100 );
+        window.setTimeout( scroll, 200 );
       }
 
       function updateDisplay(data){
