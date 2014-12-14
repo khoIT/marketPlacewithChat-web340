@@ -28,7 +28,6 @@
   <div class="row-fluid" ng-controller="MainCtrl">
     <div class="btn-group">
         <button class="btn btn-primary" ng-click="addProducts()">Show only Category!</button>
-        <button class="btn btn-default" ng-click="clear()">Something else</button>
         <button class="btn btn-default" ng-click="restart()">Start again</button>
     </div>
     <div id="category-wall" class="well">
@@ -42,8 +41,10 @@
       <div masonry>
         <li data-ng-repeat="photo in photos" class="masonry-photo" >
           <a ng-href="products/{{photo.id}}">
-            <img  ng-src="{{ photo.url}}">
-          </a>
+            <img ng-src="{{ photo.url}}">
+          </a><br>
+          Title: {{photo.title}}<br>
+          Price: {{photo.price}}<br>
         </li>
       </div>
     </ul>
@@ -52,6 +53,3 @@
     </div>
 </body>
 
-<script>
-
- </script>

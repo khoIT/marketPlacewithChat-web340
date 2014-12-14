@@ -1,10 +1,10 @@
 var chatApp = angular.module("chatApp", ["AngularSocketIO", "ui.bootstrap",'wu.masonry', 'ngStorage']);
 
-$(document).on('ready page:load', function(arguments) {
-    angular.bootstrap(document.body, ['chatApp'])
-});
+  $(document).on('ready page:load', function(arguments) {
+      angular.bootstrap(document.body, ['chatApp'])
+  });
 
- chatApp.factory('dataFactory', function($http){
+     chatApp.factory('dataFactory', function($http){
       var result;
       var data = function(url, callback){
          $http.get(url).success(function(data) {
@@ -19,6 +19,7 @@ $(document).on('ready page:load', function(arguments) {
 
       //take in url and set $scope.data to be an array of url
       function getPhotos(url){
+        getProducts('products.json');
         dataFactory(url, function(results){
           //check for duplicates
           if ($localStorage.photos !== undefined){
@@ -36,7 +37,7 @@ $(document).on('ready page:load', function(arguments) {
           $.getJSON( json_source, function( data ) {
             var items = [];
             $scope.products = data;
-            updateDisplayProduct($scope.products);
+            //updateDisplayProduct($scope.products);
           });
       }
 
@@ -73,13 +74,17 @@ $(document).on('ready page:load', function(arguments) {
           var photo = {};
           photo.url = photoLinks[key].url + "/fit/400x300";
           photo.id = ++$localStorage.id;
+
+          var product = $scope.products[photo.id-1];
+          photo.title = product.name;
+          photo.price = product.price;
           $scope.photos.push(photo);
         }
         //update storage version of photos
         $localStorage.photos = angular.toJson($scope.photos);
         $localStorage.nextPage = $scope.data.pagination.next_page;
         //scroll();
-        window.setTimeout( scroll, 100 );
+        window.setTimeout(scroll, 100);
       }
 
       function scroll(){
@@ -104,6 +109,9 @@ $(document).on('ready page:load', function(arguments) {
                 var photo = {};
                 photo.url = $scope.urls_from_chute[key].url + "/fit/400x300";
                 photo.id = ++$localStorage.id;
+                var product = $scope.products[photo.id-1];
+                photo.title = product.name;
+                photo.price = product.price;
                 $scope.photos.push(photo);
               }
               //update storage version of photos
@@ -133,7 +141,6 @@ $(document).on('ready page:load', function(arguments) {
         restrict: 'A', link: function (scope, elem, attrs) {
             elem.bind('scroll', function () {
                 var div = $(this);
-                  console.log(div.height());
                  if (div[0].scrollHeight - div.scrollTop() == div.height())
                 {
                     scope.$apply('add()');
@@ -142,19 +149,6 @@ $(document).on('ready page:load', function(arguments) {
         }
     };
     });
-
-chatApp.controller("ProductController", ["$scope", "$http", function($scope, $http) {
-	$scope.products = [];
-
-	$http.get("http://localhost:3000/products.json").
-	  success(function(data, status, headers, config) {
-	    console.log(data);
-			$scope.products = data;
-	  }).
-	  error(function(data, status, headers, config) {
-	    console.error("Something is wrong");
-	  });
-}]);
 
 //chat app
 chatApp.controller("ChatAllController", ["$scope", "socket", "$window", function($scope, socket, $window) {

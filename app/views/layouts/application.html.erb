@@ -10,12 +10,18 @@
 
   <%= csrf_meta_tags %>
   <link href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/united/bootstrap.min.css" rel="stylesheet">
-
-
 </head>
 <body>
+  <% flash.each do |name, msg| %>
+    <% if msg.is_a?(String) %>
+      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+        <a class="close" data-dismiss="alert">&#215;</a>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      </div>
+    <% end %>
+  <% end %>
 
-<div class="container">
+  <div class="container">
     <div class="header">
         <ul class="nav nav-pills pull-right" role="tablist">
           <li class="active"><a style="background: #e86537" href="/">Home</a></li>
@@ -36,11 +42,9 @@
         <hr>
     </div>
 
+    <%= yield %>
 
- 	<%= yield %>
-
-
-</div>
+  </div>
 
 
 </body>
