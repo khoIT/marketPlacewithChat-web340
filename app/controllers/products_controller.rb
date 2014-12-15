@@ -37,12 +37,11 @@ class ProductsController < ApplicationController
     @mail_form = Mailform.new(params[:mailform])
     @mail_form.deliver
     if @mail_form.deliver
-      debugger
-      flash.now[:notice] = 'Thank you for your message. We will contact you soon!'
+      redirect_to product_path(params[:mailform][:id]), notice: 'Thank you for your message. We will contact you soon!'
     else
-      flash.now[:error] = 'Cannot send message.'
+      redirect_to product_path(params[:mailform][:id]), alert: 'Cannot send message.'
     end
-    redirect_to product_path(params[:mailform][:id])
+
   end
 
   def create

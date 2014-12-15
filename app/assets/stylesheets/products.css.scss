@@ -4,7 +4,7 @@
 
 #chatbox{
   display: table;
-  height: 700px;
+  height: 400px;
   width: 100%;
   border: 1px solid #000;
   table-layout: fixed;
@@ -14,7 +14,7 @@
   display: table-cell;
   vertical-align: bottom;
   overflow: hidden;
-  max-height: 700px;
+  max-height: 400px;
 }
 .amessage{
   display: block;
@@ -76,7 +76,7 @@ table{
   float: right;
 }
 .chatContainer{
-  height: 700px;
+  height: 400px;
   overflow: scroll;
 }
 .top-products{

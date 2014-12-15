@@ -194,25 +194,25 @@ CONTENT
 }
 
 .user-icon {
-	top:147px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
+	top:165px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
 	background: rgba(65,72,72,0.75) url(/assets/user-icon.png) no-repeat center;
 }
 .email-icon {
-	top:202px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
+	top:220px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
 	background: rgba(65,72,72,0.75) url(/assets/user-icon.png) no-repeat center;
 }
 
 .pass-icon {
-	top:220px;
+	top:238px;
 	background: rgba(65,72,72,0.75) url(/assets/pass-icon.png) no-repeat center;
 }
 
 .passSignup-icon {
-	top:275px;
+	top:293px;
 	background: rgba(65,72,72,0.75) url(/assets/pass-icon.png) no-repeat center;
 }
 .passconfirm-icon {
-	top:370px;
+	top:387px;
 	background: rgba(65,72,72,0.75) url(/assets/pass-icon.png) no-repeat center;
 }
 /* Animation */
