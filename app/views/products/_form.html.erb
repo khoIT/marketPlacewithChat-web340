@@ -10,7 +10,10 @@
       </ul>
     </div>
   <% end %>
-
+  <%= f.text_field :name, id:"title", placeholder: "Product Title" %><br>
+  <%= f.text_field :price, id:"price", placeholder: "Price" %><br>
+  <%= f.text_field :img_url, id:"img_url", placeholder: "Image Url" %><br>
+  <%= f.select(:category_id, Category.all.map {|cat| [cat.name, cat.id]}, prompt: 'Choose Category') %>
   <div class="actions">
     <%= f.submit %>
   </div>

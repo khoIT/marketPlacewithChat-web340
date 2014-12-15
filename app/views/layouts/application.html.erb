@@ -34,6 +34,7 @@
                | &nbsp; Logged in as <strong><%= current_user.email %></strong>
               <%= link_to 'Edit profile', edit_user_registration_path, class: "login_button"  %>
               <%= link_to "Logout", destroy_user_session_path, class: "login_button", method: :delete %>
+              <%= link_to "Add New Product", new_product_path, class: "login_button"%>
               <div id="hidden" data-username="<%= current_user.name %>">
             <% else %>
                | <%= link_to "Sign up", new_user_registration_path, class: "login_button" %>
