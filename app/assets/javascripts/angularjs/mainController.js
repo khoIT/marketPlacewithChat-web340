@@ -3,7 +3,6 @@ var chatApp = angular.module("chatApp", ["AngularSocketIO", "ui.bootstrap",'wu.m
   $(document).on('ready page:load', function(arguments) {
       angular.bootstrap(document.body, ['chatApp'])
   });
-
      chatApp.factory('dataFactory', function($http){
       var result;
       var data = function(url, callback){
@@ -19,40 +18,26 @@ var chatApp = angular.module("chatApp", ["AngularSocketIO", "ui.bootstrap",'wu.m
 
       //take in url and set $scope.data to be an array of url
       function getPhotos(url){
-        getProducts('products.json');
         dataFactory(url, function(results){
-          //check for duplicates
+          //if there is photos then display them and skip loading
           if ($localStorage.photos !== undefined){
-           if(JSON.parse($localStorage.photos)[0].url ==  results.data[0].url + "/fit/400x300"){
-              $scope.photos = JSON.parse($localStorage.photos);
-              return;
-            }//end if
+            $scope.photos = JSON.parse($localStorage.photos);
+            return;
           }
           $scope.data = results;
           updateDisplay($scope.data);
         });
       }
 
-      function getProducts(json_source){
-          $.getJSON( json_source, function( data ) {
-            var items = [];
-            $scope.products = data;
-            //updateDisplayProduct($scope.products);
+      function getProducts(url){
+        dataFactory(url, function(results){
+          $scope.products = {};
+          $.each(results, function(index, value){
+            $scope.products[index] = value;
           });
+        });
       }
 
-      function updateDisplayProduct(data){
-        var photoLinks = data;
-        //no need to store in localStorage because tags are reset
-        //everytime reload
-        for (var key in photoLinks){
-          var photo = {};
-          photo.url = photoLinks[key].img_url;
-          photo.id = ++$localStorage.id;
-          $scope.photos.push(photo);
-        }
-        window.setTimeout( scroll, 200 );
-      }
 
       function updateDisplay(data){
         $localStorage.id == null ? $localStorage.id = 0:null;
@@ -74,12 +59,15 @@ var chatApp = angular.module("chatApp", ["AngularSocketIO", "ui.bootstrap",'wu.m
           var photo = {};
           photo.url = photoLinks[key].url + "/fit/400x300";
           photo.id = ++$localStorage.id;
-
           var product = $scope.products[photo.id-1];
-          photo.title = product.name;
-          photo.price = product.price;
-          $scope.photos.push(photo);
+          if (product){
+            photo.title = product.name;
+            photo.price = product.price;
+            $scope.photos.push(photo);
+          }
         }
+        if($scope.photos[9] !== undefined)
+          $scope.photos.splice(9, 1);
         //update storage version of photos
         $localStorage.photos = angular.toJson($scope.photos);
         $localStorage.nextPage = $scope.data.pagination.next_page;
@@ -93,13 +81,8 @@ var chatApp = angular.module("chatApp", ["AngularSocketIO", "ui.bootstrap",'wu.m
 
       //intialize gallery
       first_url = 'https://api.getchute.com/v2/albums/aus6kwrg/assets?per_page=5&page=1';
+      getProducts('http://localhost:3000/products');
       getPhotos(first_url);
-
-      $scope.addProducts = function addProducts(){
-        $localStorage.$reset();
-        $scope.photos = [];
-        getProducts('products.json');
-      }
 
       $scope.add = function add() {
         $http.get($localStorage.nextPage).
@@ -110,10 +93,14 @@ var chatApp = angular.module("chatApp", ["AngularSocketIO", "ui.bootstrap",'wu.m
                 photo.url = $scope.urls_from_chute[key].url + "/fit/400x300";
                 photo.id = ++$localStorage.id;
                 var product = $scope.products[photo.id-1];
-                photo.title = product.name;
-                photo.price = product.price;
-                $scope.photos.push(photo);
+                if (product){
+                  photo.title = product.name;
+                  photo.price = product.price;
+                  $scope.photos.push(photo);
+                }
               }
+              if($scope.photos[9] !== undefined)
+                $scope.photos.splice(9, 1);
               //update storage version of photos
               $localStorage.photos = angular.toJson($scope.photos);
               $localStorage.nextPage = data.pagination.next_page;
@@ -123,6 +110,7 @@ var chatApp = angular.module("chatApp", ["AngularSocketIO", "ui.bootstrap",'wu.m
       };
 
       //clear all current products and load next batch
+      //temporary deprecate
       $scope.clear = function clear() {
           $scope.photos = [];
           delete $localStorage.photos;
@@ -132,7 +120,46 @@ var chatApp = angular.module("chatApp", ["AngularSocketIO", "ui.bootstrap",'wu.m
       $scope.restart = function restart() {
         $scope.photos = [];
         $localStorage.$reset();
+        getProducts('http://localhost:3000/products');
         getPhotos(first_url);
+      };
+
+      $scope.updateCategory = function change(){
+
+        var selected_categories = $("#category-wall .btn-primary");
+        if (selected_categories[0] === undefined){
+          return;
+        }
+        var ids = [];
+        $.each( selected_categories, function( index, value ){
+            ids.push(value.id);
+        });
+
+        $.ajax({
+          type: 'post',
+          url: 'http://localhost:3000/category',
+          data: JSON.stringify(ids),
+          dataType: 'json',
+          contentType: "application/json; charset=utf-8",
+          success: function(data){
+            console.log(data);
+            //loop through all $scope.photos and keep only those with
+            //product id
+            $scope.products = {};   //set products empty
+            $.each(data, function(index, product){
+              $scope.products[product.id] = product;
+            });
+            $scope.photos = [];
+            $.each(JSON.parse($localStorage.photos), function(index, photo){
+              if (photo.id in $scope.products){
+                $scope.photos.push(photo);
+              }
+            });
+            //upon refresh category will be cleared
+            $scope.$apply();
+            window.setTimeout(scroll, 100);
+          }
+        });
       };
     });
 

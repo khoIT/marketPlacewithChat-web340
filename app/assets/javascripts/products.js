@@ -4,18 +4,13 @@
 
 $(function () {
   // Toggling dispay of tags on the server and UI.
-  $("#category-wall").on("click", "a", function(event) {
-    var category = $(this).attr("href");
-    var follow = $(this).hasClass('btn-default');
-    $.ajax({
-      type: "GET",
-      url: "/category/" + category,
-      data: { follow: follow, category: category }
-    });
+  $("#category-wall").on("click", "a", function(event) {    
+   	var follow = $(this).hasClass('btn-default');
     $(this).toggleClass('btn-primary', follow)
            .toggleClass('btn-default', !follow);
     return false;
   });
 
 });
+
 

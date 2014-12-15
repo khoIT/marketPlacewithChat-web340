@@ -5,8 +5,8 @@
 
   <%= form_for(resource, html:{class:'login-form'}, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="header">
-      <h1>Login Form</h1>
-      <span>Toast to the begining of your smart stores!</span><!--END DESCRIPTION-->
+      <h1>Login</h1>
+      <span>Howdy, fellow trader!<br>Please login to explore all of tBay.</span><!--END DESCRIPTION-->
     </div>
     <div class="content">
       <%= f.email_field :email, placeholder:"Email", class:"input username", autofocus: true %>

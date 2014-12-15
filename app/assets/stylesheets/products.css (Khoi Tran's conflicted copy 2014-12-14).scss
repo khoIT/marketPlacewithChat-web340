@@ -60,7 +60,7 @@
   border:black;
   border-width:1px;
   border-style:solid;
-  width:200px;
+  width:250px;
   height:310px;
   margin:5px;
   padding:5px;
@@ -83,25 +83,20 @@ table{
   margin: 1em;
   max-width: 200px;
   float: left;
-  background-color:#ddd;
-  margin-top:10px;
 }
 
 .prod-image{
-  border-color:#ddd;
-  border-width:10px 10px 0px 10px;
+  border-color:#eee;
+  border-width:5px 5px 15px 5px;
   border-style:solid;
-  max-width: 200px;
-  max-height: 200px;
 }
-.prod-text{
-  padding:10px;
-  padding-top:0px;
+.img-rounded {
+  border-radius: 6px;
 }
 
 .products{
-  margin: 10px;
-  max-width: 200px;
+  margin: 1em 1em 0 1em;
+  max-width: 400px;
 }
 #hidden{
   display: none;
@@ -113,7 +108,7 @@ table{
   float: left;
   width: 80%;
 }
-#btn-tbay{
-  background: #99ae47 !important;
+.btn-tbay{
+  background-color: #99ae47;
 }
 

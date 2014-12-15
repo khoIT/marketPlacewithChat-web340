@@ -1,53 +1,64 @@
 <title>Market Place</title>
 <body>
   <div class="hero-unit">
-      <h1>T-Bay</h1>
-      <p>Here, you can find anything</p>
+      <img style="max-height:200px;" src="/assets/tbay-logo-transparent.png">
   </div>
   <hr>
 
   <div class="row-fluid">
     <div style="display:block">
-      <button class="btn btn-success" type="button">
-          Top Products! <span class="badge">5</span>
+      <button class="btn btn-default" type="button" disabled="disabled">
+          Most Popular items
       </button>
     </div>
     <% @top_view.each do |product| %>
       <div class="top-products">
-          <%= link_to image_tag(product.img_url), product_path(product)%>
+          <div class="prod-image"><%= link_to image_tag(product.img_url), product_path(product)%></div>
         <br>
-        Title: <%= product.name %><br>
-        Price: $<%= product.price %><br>
-        Category: <%= Category.find_by_id(product.category).name %><br>
+        <div class="prod-text">
+          Title: <%= product.name %><br>
+          Price: $<%= product.price %><br>
+          Category: <%= Category.find_by_id(product.category).name %><br>
+        </div>
       </div>
 
     <% end %>
   </div>
   <hr>
+  <button class="btn btn-default" type="button" disabled="disabled">Browse by Categories</button>
+  <br><br/>
 
   <div class="row-fluid" ng-controller="MainCtrl">
-    <div class="btn-group">
-        <button class="btn btn-primary" ng-click="addProducts()">Show only Category!</button>
-        <button class="btn btn-default" ng-click="restart()">Start again</button>
+    
+    <div id="category-wall" class="well">     
+      <% @categories.each do |cat| %>
+        <a class="btn btn-default" id="<%= cat.id %>" ng-click="updateCategory()">
+          <%= cat.name %>
+        </a>
+      <% end %> 
+      <br /><br/>
+      <div class="btn-group">
+        <button id="choose-category" class="btn btn-primary" ng-click="updateCategory()">Update</button>        
+        <button id="btn-tbay" class="btn"  ng-click="restart()">Reset</button>
+      </div>
     </div>
-    <div id="category-wall" class="well">
-    <% @categories.each do |cat| %>
-      <a class="btn btn-default" href="<%= cat.id %>">
-        <%= cat.name %>
-      </a>
-    <% end %>
-    </div>
+  
     <ul class="panel" scroller>
       <div masonry>
         <li data-ng-repeat="photo in photos" class="masonry-photo" >
-          <a ng-href="products/{{photo.id}}">
-            <img ng-src="{{ photo.url}}">
-          </a><br>
-          Title: {{photo.title}}<br>
-          Price: {{photo.price}}<br>
+          <div class="top-products">
+            <a ng-href="products/{{photo.id}}">
+              <img class="prod-image" ng-src="{{ photo.url}}">
+            </a><br>
+            <div class="prod-text">
+              Title: {{photo.title}}<br>
+              Price: {{photo.price}}<br>
+            </div>
+          </div>
         </li>
       </div>
     </ul>
+
   </div>
   <div id="gallery-bottom">
     </div>

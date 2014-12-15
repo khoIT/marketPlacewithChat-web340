@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Chute</title>
+  <title>tBay - Your Local Trading Community</title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
   <script type="application/javascript" src="https://cdn.socket.io/socket.io-1.1.0.js"></script>
   <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
 
-  <%= csrf_meta_tags %>
+
   <link href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/united/bootstrap.min.css" rel="stylesheet">
+  <%= csrf_meta_tags %>
+
 </head>
 <body>
   <% flash.each do |name, msg| %>
@@ -24,28 +26,28 @@
   <div class="container">
     <div class="header">
         <ul class="nav nav-pills pull-right" role="tablist">
-          <li class="active"><a style="background: #e86537" href="/">Home</a></li>
-          <li><a href="#/about">About</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+
           <li>
             <% if user_signed_in? %>
-              Logged in as <strong><%= current_user.email %></strong>.
-              <%= link_to 'Edit profile', edit_user_registration_path, class: "login_button"  %> |
+               | &nbsp; Logged in as <strong><%= current_user.email %></strong>
+              <%= link_to 'Edit profile', edit_user_registration_path, class: "login_button"  %>
               <%= link_to "Logout", destroy_user_session_path, class: "login_button", method: :delete %>
               <div id="hidden" data-username="<%= current_user.name %>">
             <% else %>
-              <%= link_to "Sign up", new_user_registration_path, class: "login_button" %> |
+               | <%= link_to "Sign up", new_user_registration_path, class: "login_button" %>
               <%= link_to "Login", new_user_session_path, class: "login_button" %>
             <% end %>
           </li>
         </ul>
-        <h3 class="text-muted">T-Bay</h3>
+        <h3 class="text-muted">tBay</h3> 
         <hr>
     </div>
 
     <%= yield %>
 
   </div>
-
 
 </body>
 </html>

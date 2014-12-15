@@ -42,4 +42,4 @@ gem 'angularjs-rails'
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.1'
 gem 'autoprefixer-rails'
-
+gem "mail_form", ">= 1.3.0"

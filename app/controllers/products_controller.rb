@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
     @top_view = Product.limit(5).order('view desc')
     @categories = Category.all
   end
+
   def index
     @products = Product.all
     render json: @products
@@ -18,6 +19,7 @@ class ProductsController < ApplicationController
   def show
     @product.view += 1
     @product.save!
+    @contact_form = Mailform.new
   end
 
   # GET /products/new
@@ -31,6 +33,18 @@ class ProductsController < ApplicationController
 
   # POST /products
   # POST /products.json
+  def create_contact_form
+    @mail_form = Mailform.new(params[:mailform])
+    @mail_form.deliver
+    if @mail_form.deliver
+      debugger
+      flash.now[:notice] = 'Thank you for your message. We will contact you soon!'
+    else
+      flash.now[:error] = 'Cannot send message.'
+    end
+    redirect_to product_path(params[:mailform][:id])
+  end
+
   def create
     @product = Product.new(product_params)
 
