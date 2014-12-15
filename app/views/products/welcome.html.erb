@@ -29,20 +29,21 @@
   <br><br/>
 
   <div class="row-fluid" ng-controller="MainCtrl">
-    
-    <div id="category-wall" class="well">     
+    <div class="well">
+      <div id="category-wall">
       <% @categories.each do |cat| %>
         <a class="btn btn-default" id="<%= cat.id %>" ng-click="updateCategory()">
           <%= cat.name %>
         </a>
-      <% end %> 
+      <% end %>
+      </div>
       <br /><br/>
       <div class="btn-group">
-        <button id="choose-category" class="btn btn-primary" ng-click="updateCategory()">Update</button>        
+        <button id="choose-category" class="btn btn-primary" ng-click="updateCategory()">Update</button>
         <button id="btn-tbay" class="btn"  ng-click="restart()">Reset</button>
       </div>
     </div>
-  
+
     <ul class="panel" scroller>
       <div masonry>
         <li data-ng-repeat="photo in photos" class="masonry-photo" >

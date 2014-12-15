@@ -122,7 +122,9 @@ var chatApp = angular.module("chatApp", ["AngularSocketIO", "ui.bootstrap",'wu.m
         $localStorage.$reset();
         getProducts('http://localhost:3000/products');
         getPhotos(first_url);
-      };
+        debugger
+        $("#category-wall a").toggleClass('btn-default', true)
+      };                     .toggleClass('btn-primary', false);
 
       $scope.updateCategory = function change(){
 
