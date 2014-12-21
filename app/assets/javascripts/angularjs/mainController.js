@@ -169,11 +169,9 @@ var chatApp = angular.module("chatApp", ["AngularSocketIO", "ui.bootstrap",'wu.m
       return {
         restrict: 'A', link: function (scope, elem, attrs) {
             elem.bind('scroll', function () {
-                var div = $(this);
-                 if (div[0].scrollHeight - div.scrollTop() == div.height())
-                {
+               if($(this).scrollTop() + $(this).innerHeight()>=$(this)[0].scrollHeight){
                     scope.$apply('add()');
-                }
+               }
             });
         }
     };

@@ -1,0 +1,1384 @@
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-21 07:31:34 -0500
+
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+	bin/rake db:migrate RAILS_ENV=development
+
+):
+  activerecord (4.1.7) lib/active_record/migration.rb:389:in `check_pending!'
+  activerecord (4.1.7) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.7) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.7) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.7) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.7) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.7) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.7) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.7) lib/action_dispatch/middleware/static.rb:84:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.7) lib/rails/engine.rb:514:in `call'
+  railties (4.1.7) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  /Users/PKer/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:138:in `service'
+  /Users/PKer/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/httpserver.rb:94:in `run'
+  /Users/PKer/.rbenv/versions/2.1.3/lib/ruby/2.1.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Users/PKer/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.2ms)
+  Rendered /Users/PKer/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /Users/PKer/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/PKer/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (28.2ms)
+  [1m[36m (0.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.2ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateProducts (20141207111733)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "category_id" integer, "user_id" integer, "price" decimal, "img_url" varchar(255), "view" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141207111733"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+Migrating to DeviseCreateUsers (20141207113906)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255) DEFAULT '' NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141207113906"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCategories (20141212025308)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141212025308"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-21 07:31:47 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#welcome as HTML
+  [1m[35mProduct Load (0.2ms)[0m  SELECT  "products".* FROM "products"   ORDER BY view desc LIMIT 5
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered products/welcome.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 28217ms (Views: 28199.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-21 07:32:15 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:15 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:15 -0500
+
+
+Started GET "/assets/angular-route.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:15 -0500
+
+
+Started GET "/assets/angular.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:15 -0500
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:15 -0500
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:15 -0500
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:15 -0500
+
+
+Started GET "/assets/gallery.css" for 127.0.0.1 at 2014-12-21 07:32:15 -0500
+
+
+Started GET "/assets/login.css" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/angular-masonry/angular-masonry.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/angularjs/angular_socket.io_services.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/angularjs/app.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/angularjs/mainController.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/angularjs/ng-infinite-scroll.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/angularjs/ui-bootstrap-0.11.2.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bower/angular-route.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bower/angular-route.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bower/angular.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bower/eventEmitter/EventEmitter.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bower/eventEmitter/EventEmitter.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bower/eventie/eventie.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bower/get-style-property/get-style-property.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bower/get-size/get-size.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bower/imagesloaded/Gruntfile.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.pkgd.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.pkgd.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:16 -0500
+
+
+Started GET "/assets/bower/masonry/dist/masonry.pkgd.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/masonry/dist/masonry.pkgd.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/masonry/masonry.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/matches-selector/matches-selector.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/matches-selector/tests.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/outlayer/item.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/outlayer/outlayer.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/tbay-logo-transparent.png" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/angular-masonry/angular-masonry.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/angularjs/angular_socket.io_services.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/angularjs/ng-infinite-scroll.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/angularjs/ui-bootstrap-0.11.2.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/angular-route.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/angular-route.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/eventEmitter/EventEmitter.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/eventEmitter/EventEmitter.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/eventie/eventie.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/get-size/get-size.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/get-style-property/get-style-property.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.pkgd.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.pkgd.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/masonry/dist/masonry.pkgd.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/masonry/dist/masonry.pkgd.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/masonry/masonry.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/matches-selector/matches-selector.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/outlayer/item.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/bower/outlayer/outlayer.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+
+
+Started GET "/assets/tbay-logo-transparent.png" for 127.0.0.1 at 2014-12-21 07:32:17 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.5ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'khoitran_2014@depauw.edu' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-21 12:32:25.498256"], ["email", "khoitran_2014@depauw.edu"], ["encrypted_password", "$2a$10$ZZgV9GyAaxy19w52kG1cBOXizjftBOF5m54twFmjFKRwsu6LeucEC"], ["name", "Khoi"], ["updated_at", "2014-12-21 12:32:25.498256"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'rajatkumar_2015@depauw.edu' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-21 12:32:25.585046"], ["email", "rajatkumar_2015@depauw.edu"], ["encrypted_password", "$2a$10$knRliU.aUjciOhYbj22ECuh/gY9/Ct4R0Hnf0UeA8vMQyiniLhfiW"], ["name", "Rajat"], ["updated_at", "2014-12-21 12:32:25.585046"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'yukinakano_2014@depauw.edu' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-21 12:32:25.675099"], ["email", "yukinakano_2014@depauw.edu"], ["encrypted_password", "$2a$10$coQT4swfm5595sPIpLWNLOPkQmC.MbOgXobpVI1D/5/Ci9y049K1S"], ["name", "Yuki"], ["updated_at", "2014-12-21 12:32:25.675099"]]
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'emails.khoi@gmail.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2014-12-21 12:32:25.763341"], ["email", "emails.khoi@gmail.com"], ["encrypted_password", "$2a$10$JV0x9/Qz4pk2pgmMQR5cVO3eai1Y1sIuwqZAS0f/3/SuhxFHnLgKW"], ["name", "Khoi"], ["updated_at", "2014-12-21 12:32:25.763341"]]
+  [1m[36m (1.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-12-21 12:32:25.772623"], ["name", "Arts & Crafts"], ["updated_at", "2014-12-21 12:32:25.772623"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-12-21 12:32:25.775322"], ["name", "Bikes"], ["updated_at", "2014-12-21 12:32:25.775322"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-12-21 12:32:25.777304"], ["name", "Books"], ["updated_at", "2014-12-21 12:32:25.777304"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-12-21 12:32:25.779171"], ["name", "Cars"], ["updated_at", "2014-12-21 12:32:25.779171"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-12-21 12:32:25.781035"], ["name", "Clothing"], ["updated_at", "2014-12-21 12:32:25.781035"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-12-21 12:32:25.782880"], ["name", "Electronics"], ["updated_at", "2014-12-21 12:32:25.782880"]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-12-21 12:32:25.784729"], ["name", "Household"], ["updated_at", "2014-12-21 12:32:25.784729"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-12-21 12:32:25.786770"], ["name", "Tickets"], ["updated_at", "2014-12-21 12:32:25.786770"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)[0m  [["created_at", "2014-12-21 12:32:25.788566"], ["name", "Toys & Games"], ["updated_at", "2014-12-21 12:32:25.788566"]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "categories" ("created_at", "name", "updated_at") VALUES (?, ?, ?)  [["created_at", "2014-12-21 12:32:25.790353"], ["name", "General"], ["updated_at", "2014-12-21 12:32:25.790353"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category_id", 6], ["created_at", "2014-12-21 12:32:25.806400"], ["img_url", "https://media.getchute.com/m/UR5evlevc/c/2500342/fit/450x300"], ["name", "Disc"], ["price", 10.05], ["updated_at", "2014-12-21 12:32:25.806400"], ["user_id", 1], ["view", 0]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category_id", 1], ["created_at", "2014-12-21 12:32:25.809589"], ["img_url", "https://media.getchute.com/m/UR5eufvpn/c/2500342/fit/450x300"], ["name", "Painting"], ["price", 33.05], ["updated_at", "2014-12-21 12:32:25.809589"], ["user_id", 2], ["view", 0]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category_id", 9], ["created_at", "2014-12-21 12:32:25.811635"], ["img_url", "https://media.getchute.com/m/UR5ethvgj/c/2500342/fit/450x300"], ["name", "Surf Board"], ["price", 120.99], ["updated_at", "2014-12-21 12:32:25.811635"], ["user_id", 3], ["view", 0]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category_id", 5], ["created_at", "2014-12-21 12:32:25.813493"], ["img_url", "https://media.getchute.com/m/UR5eszuip/c/2500342/fit/450x300"], ["name", "White Tank Top"], ["price", 55.75], ["updated_at", "2014-12-21 12:32:25.813493"], ["user_id", 2], ["view", 2]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category_id", 3], ["created_at", "2014-12-21 12:32:25.815362"], ["img_url", "https://media.getchute.com/m/UR5epmqog/c/2500342/fit/450x300"], ["name", "Books of Life"], ["price", 105.05], ["updated_at", "2014-12-21 12:32:25.815362"], ["user_id", 1], ["view", 1]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category_id", 5], ["created_at", "2014-12-21 12:32:25.817291"], ["img_url", "https://media.getchute.com/m/UR5eqdjmp/c/2500342/fit/450x300"], ["name", "Black Glasses"], ["price", 44.99], ["updated_at", "2014-12-21 12:32:25.817291"], ["user_id", 1], ["view", 0]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category_id", 9], ["created_at", "2014-12-21 12:32:25.819155"], ["img_url", "https://media.getchute.com/m/UR5eoyben/c/2500342/fit/450x300"], ["name", "Surf Board"], ["price", 44.99], ["updated_at", "2014-12-21 12:32:25.819155"], ["user_id", 1], ["view", 0]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category_id", 2], ["created_at", "2014-12-21 12:32:25.821042"], ["img_url", "https://media.getchute.com/m/UR5enulna/c/2500342/fit/450x300"], ["name", "Speedo"], ["price", 44.99], ["updated_at", "2014-12-21 12:32:25.821042"], ["user_id", 2], ["view", 0]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category_id", 5], ["created_at", "2014-12-21 12:32:25.822945"], ["img_url", "https://media.getchute.com/m/UR5elgjzl/c/2500342/fit/450x300"], ["name", "Blazer"], ["price", 44.99], ["updated_at", "2014-12-21 12:32:25.822945"], ["user_id", 2], ["view", 0]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category_id", 5], ["created_at", "2014-12-21 12:32:25.824877"], ["img_url", "https://media.getchute.com/m/UR5elgjzl/c/2500342/fit/450x300"], ["name", "Empty"], ["price", 44.99], ["updated_at", "2014-12-21 12:32:25.824877"], ["user_id", 2], ["view", 0]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category_id", 8], ["created_at", "2014-12-21 12:32:25.826811"], ["img_url", "https://media.getchute.com/m/UR5ejocak/c/2500342/fit/450x300"], ["name", "Seadside Trip"], ["price", 10.05], ["updated_at", "2014-12-21 12:32:25.826811"], ["user_id", 1], ["view", 0]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category_id", 6], ["created_at", "2014-12-21 12:32:25.828802"], ["img_url", "https://media.getchute.com/m/UR5eiphfc/c/2500342/fit/450x300"], ["name", "BSB Band Disc"], ["price", 33.05], ["updated_at", "2014-12-21 12:32:25.828802"], ["user_id", 2], ["view", 0]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category_id", 8], ["created_at", "2014-12-21 12:32:25.831042"], ["img_url", "https://media.getchute.com/m/UR5ehrpgd/c/2500342/fit/450x300"], ["name", "Trip to Copenhagen"], ["price", 120.99], ["updated_at", "2014-12-21 12:32:25.831042"], ["user_id", 3], ["view", 0]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category_id", 8], ["created_at", "2014-12-21 12:32:25.833062"], ["img_url", "https://media.getchute.com/m/UR5egmehk/c/2500342/fit/450x300"], ["name", "Trip to Sydney"], ["price", 55.75], ["updated_at", "2014-12-21 12:32:25.833062"], ["user_id", 2], ["view", 0]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category_id", 9], ["created_at", "2014-12-21 12:32:25.834954"], ["img_url", "https://media.getchute.com/m/UR5efxmqh/c/2500342/fit/450x300"], ["name", "Surf Board"], ["price", 105.05], ["updated_at", "2014-12-21 12:32:25.834954"], ["user_id", 1], ["view", 0]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category_id", 6], ["created_at", "2014-12-21 12:32:25.836872"], ["img_url", "https://media.getchute.com/m/UR5edfoub/c/2500342/fit/450x300"], ["name", "Yellow Chairs"], ["price", 44.99], ["updated_at", "2014-12-21 12:32:25.836872"], ["user_id", 1], ["view", 5]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category_id", 4], ["created_at", "2014-12-21 12:32:25.838779"], ["img_url", "https://media.getchute.com/m/UR5ecdwrc/c/2500342/fit/450x300"], ["name", "Surf Car"], ["price", 44.99], ["updated_at", "2014-12-21 12:32:25.838779"], ["user_id", 1], ["view", 0]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category_id", 7], ["created_at", "2014-12-21 12:32:25.840911"], ["img_url", "https://media.getchute.com/m/UR5ebtanq/c/2500342/fit/450x300"], ["name", "Swimming Pool"], ["price", 44.99], ["updated_at", "2014-12-21 12:32:25.840911"], ["user_id", 2], ["view", 0]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category_id", 6], ["created_at", "2014-12-21 12:32:25.842833"], ["img_url", "https://media.getchute.com/m/UR5eadwxi/c/2500342/fit/450x300"], ["name", "Laptop"], ["price", 44.99], ["updated_at", "2014-12-21 12:32:25.842833"], ["user_id", 2], ["view", 0]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category_id", 9], ["created_at", "2014-12-21 12:32:25.844847"], ["img_url", "https://media.getchute.com/m/UR5e9cgxj/c/2500342/fit/450x300"], ["name", "Surf Board"], ["price", 44.99], ["updated_at", "2014-12-21 12:32:25.844847"], ["user_id", 1], ["view", 0]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category_id", 5], ["created_at", "2014-12-21 12:32:25.846863"], ["img_url", "https://media.getchute.com/m/UR5e8tnch/c/2500342/fit/400x300"], ["name", "Swimming Pant"], ["price", 10.05], ["updated_at", "2014-12-21 12:32:25.846863"], ["user_id", 1], ["view", 0]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category_id", 7], ["created_at", "2014-12-21 12:32:25.848765"], ["img_url", "https://media.getchute.com/m/UR5e7tbmx/c/2500342/fit/400x300"], ["name", "Horse Fish"], ["price", 33.05], ["updated_at", "2014-12-21 12:32:25.848765"], ["user_id", 2], ["view", 0]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category_id", 1], ["created_at", "2014-12-21 12:32:25.850551"], ["img_url", "https://media.getchute.com/m/UR5e6ialc/c/2500342/fit/400x300"], ["name", "Photograph"], ["price", 120.99], ["updated_at", "2014-12-21 12:32:25.850551"], ["user_id", 3], ["view", 0]]
+  [1m[35m (0.6ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category_id", 8], ["created_at", "2014-12-21 12:32:25.852365"], ["img_url", "https://media.getchute.com/m/UR5e5ugos/c/2500342/fit/400x300"], ["name", "Surf Classes"], ["price", 55.75], ["updated_at", "2014-12-21 12:32:25.852365"], ["user_id", 2], ["view", 0]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category_id", 10], ["created_at", "2014-12-21 12:32:25.855484"], ["img_url", "https://media.getchute.com/m/UR5e0atlr/c/2500342/fit/400x300"], ["name", "Cigarette"], ["price", 105.05], ["updated_at", "2014-12-21 12:32:25.855484"], ["user_id", 1], ["view", 0]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category_id", 7], ["created_at", "2014-12-21 12:32:25.857349"], ["img_url", "https://media.getchute.com/m/UR5e4gmqx/c/2500342/fit/400x300"], ["name", "Sunrise"], ["price", 44.99], ["updated_at", "2014-12-21 12:32:25.857349"], ["user_id", 1], ["view", 0]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category_id", 8], ["created_at", "2014-12-21 12:32:25.859259"], ["img_url", "https://media.getchute.com/m/UR5dZlbtw/c/2500342/fit/400x300"], ["name", "Hawaii Vacation"], ["price", 44.99], ["updated_at", "2014-12-21 12:32:25.859259"], ["user_id", 1], ["view", 0]]
+  [1m[35m (0.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category_id", 9], ["created_at", "2014-12-21 12:32:25.861180"], ["img_url", "https://media.getchute.com/m/UR5e3rsci/c/2500342/fit/400x300"], ["name", "Pikachu"], ["price", 44.99], ["updated_at", "2014-12-21 12:32:25.861180"], ["user_id", 2], ["view", 0]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["category_id", 8], ["created_at", "2014-12-21 12:32:25.863245"], ["img_url", "https://media.getchute.com/m/UR5e1rsxq/c/2500342/fit/400x300"], ["name", "Surf Lesson"], ["price", 44.99], ["updated_at", "2014-12-21 12:32:25.863245"], ["user_id", 2], ["view", 0]]
+  [1m[35m (0.8ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "products" ("category_id", "created_at", "img_url", "name", "price", "updated_at", "user_id", "view") VALUES (?, ?, ?, ?, ?, ?, ?, ?)  [["category_id", 1], ["created_at", "2014-12-21 12:32:25.865301"], ["img_url", "https://media.getchute.com/m/UR5dVlspm/c/2500342/fit/400x300"], ["name", "Selfie"], ["price", 44.99], ["updated_at", "2014-12-21 12:32:25.865301"], ["user_id", 1], ["view", 0]]
+  [1m[36m (0.7ms)[0m  [1mcommit transaction[0m
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-21 07:32:35 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#welcome as HTML
+  [1m[35mProduct Load (0.3ms)[0m  SELECT  "products".* FROM "products"   ORDER BY view desc LIMIT 5
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 6 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 5 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 6 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 1 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered products/welcome.html.erb within layouts/application (33.1ms)
+Completed 200 OK in 537ms (Views: 519.1ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/angular.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/angular-route.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/login.css" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/gallery.css" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/angular-masonry/angular-masonry.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/angularjs/angular_socket.io_services.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/angularjs/app.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/angularjs/mainController.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/angularjs/ng-infinite-scroll.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/angularjs/ui-bootstrap-0.11.2.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/angular-route.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/angular-route.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/angular.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/eventEmitter/EventEmitter.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/eventEmitter/EventEmitter.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/eventie/eventie.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/get-size/get-size.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/get-style-property/get-style-property.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/imagesloaded/Gruntfile.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.pkgd.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.pkgd.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/masonry/dist/masonry.pkgd.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/masonry/dist/masonry.pkgd.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/masonry/masonry.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/matches-selector/matches-selector.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/matches-selector/tests.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/outlayer/item.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/bower/outlayer/outlayer.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/assets/tbay-logo-transparent.png" for 127.0.0.1 at 2014-12-21 07:32:36 -0500
+
+
+Started GET "/products" for 127.0.0.1 at 2014-12-21 07:32:37 -0500
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.3ms)[0m  SELECT "products".* FROM "products"
+Completed 200 OK in 9ms (Views: 8.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2014-12-21 07:32:40 -0500
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT "products".* FROM "products"[0m
+Completed 200 OK in 9ms (Views: 8.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2014-12-21 07:32:47 -0500
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.3ms)[0m  SELECT "products".* FROM "products"
+Completed 200 OK in 9ms (Views: 8.3ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/category" for 127.0.0.1 at 2014-12-21 07:32:53 -0500
+Processing by CategoriesController#show_product as JSON
+  Parameters: {"_json"=>["4", "6"], "category"=>{}}
+  [1m[36mProduct Load (0.4ms)[0m  [1mSELECT "products".* FROM "products"  WHERE "products"."category_id" IN (4, 6)[0m
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-21 07:37:14 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProductsController#welcome as HTML
+  [1m[35mProduct Load (0.4ms)[0m  SELECT  "products".* FROM "products"   ORDER BY view desc LIMIT 5
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mCategory Load (0.2ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 6 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 5 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 6 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 1 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered products/welcome.html.erb within layouts/application (34.1ms)
+Completed 200 OK in 595ms (Views: 577.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/angular.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/angular-route.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/login.css" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/gallery.css" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/angular-masonry/angular-masonry.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/angularjs/angular_socket.io_services.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/angularjs/app.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/angularjs/mainController.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/angularjs/ng-infinite-scroll.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/angularjs/ui-bootstrap-0.11.2.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/angular-route.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/angular-route.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/angular.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/eventEmitter/EventEmitter.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/eventEmitter/EventEmitter.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/eventie/eventie.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/get-size/get-size.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/get-style-property/get-style-property.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/imagesloaded/Gruntfile.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.pkgd.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.pkgd.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/masonry/dist/masonry.pkgd.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/masonry/dist/masonry.pkgd.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/masonry/masonry.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/matches-selector/matches-selector.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/matches-selector/tests.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/outlayer/item.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/bower/outlayer/outlayer.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-21 07:37:15 -0500
+
+
+Started GET "/assets/tbay-logo-transparent.png" for 127.0.0.1 at 2014-12-21 07:37:16 -0500
+
+
+Started GET "/products" for 127.0.0.1 at 2014-12-21 07:37:16 -0500
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.3ms)[0m  SELECT "products".* FROM "products"
+Completed 200 OK in 14ms (Views: 13.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/products" for 127.0.0.1 at 2014-12-21 07:37:21 -0500
+Processing by ProductsController#index as HTML
+  [1m[36mProduct Load (0.3ms)[0m  [1mSELECT "products".* FROM "products"[0m
+Completed 200 OK in 9ms (Views: 7.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-21 07:40:38 -0500
+Processing by ProductsController#welcome as HTML
+  [1m[35mProduct Load (0.6ms)[0m  SELECT  "products".* FROM "products"   ORDER BY view desc LIMIT 5
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 6 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 5 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 6 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 1 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered products/welcome.html.erb within layouts/application (7.1ms)
+Completed 500 Internal Server Error in 1062ms
+
+ActionView::Template::Error (Unexpected token: punc ()) (line: 40391, col: 13, pos: 1357657)
+
+Error
+    at new JS_Parse_Error (/private/var/folders/92/34m7k4sj5ydgwh0mxrbrjv9w0000gn/T/execjs20141221-77549-czna06js:2357:10623)
+    at js_error (/private/var/folders/92/34m7k4sj5ydgwh0mxrbrjv9w0000gn/T/execjs20141221-77549-czna06js:2357:10842)
+    at croak (/private/var/folders/92/34m7k4sj5ydgwh0mxrbrjv9w0000gn/T/execjs20141221-77549-czna06js:2357:19067)
+    at token_error (/private/var/folders/92/34m7k4sj5ydgwh0mxrbrjv9w0000gn/T/execjs20141221-77549-czna06js:2357:19204)
+    at unexpected (/private/var/folders/92/34m7k4sj5ydgwh0mxrbrjv9w0000gn/T/execjs20141221-77549-czna06js:2357:19292)
+    at /private/var/folders/92/34m7k4sj5ydgwh0mxrbrjv9w0000gn/T/execjs20141221-77549-czna06js:2357:20761
+    at /private/var/folders/92/34m7k4sj5ydgwh0mxrbrjv9w0000gn/T/execjs20141221-77549-czna06js:2357:19938
+    at block_ (/private/var/folders/92/34m7k4sj5ydgwh0mxrbrjv9w0000gn/T/execjs20141221-77549-czna06js:2357:24557)
+    at ctor.body (/private/var/folders/92/34m7k4sj5ydgwh0mxrbrjv9w0000gn/T/execjs20141221-77549-czna06js:2357:24191)
+    at function_ (/private/var/folders/92/34m7k4sj5ydgwh0mxrbrjv9w0000gn/T/execjs20141221-77549-czna06js:2357:24256)
+  (in /Users/PKer/code/marketPlacewithChat-web340/app/assets/javascripts/application.js)):
+    3: <head>
+    4:   <title>tBay - Your Local Trading Community</title>
+    5:   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    6:   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    7: 
+    8:   <script type="application/javascript" src="https://cdn.socket.io/socket.io-1.1.0.js"></script>
+    9:   <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
+  app/views/layouts/application.html.erb:6:in `_app_views_layouts_application_html_erb___3002257935545467472_70177736153120'
+
+
+  Rendered /Users/PKer/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /Users/PKer/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/PKer/.rbenv/versions/2.1.3/lib/ruby/gems/2.1.0/gems/actionpack-4.1.7/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (13.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-21 07:41:30 -0500
+Processing by ProductsController#welcome as HTML
+  [1m[35mProduct Load (0.4ms)[0m  SELECT  "products".* FROM "products"   ORDER BY view desc LIMIT 5
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 6 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 5 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 6 LIMIT 1
+  [1m[36mCategory Load (0.2ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 1 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered products/welcome.html.erb within layouts/application (9.6ms)
+Completed 200 OK in 7417ms (Views: 7414.5ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/angular.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/angular-route.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/login.css" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/gallery.css" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/angular-masonry/angular-masonry.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/angularjs/angular_socket.io_services.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/angularjs/app.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/angularjs/mainController.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/angularjs/ui-bootstrap-0.11.2.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/angular-route.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/angular-route.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/eventEmitter/EventEmitter.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/eventie/eventie.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/angular.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/eventEmitter/EventEmitter.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/get-size/get-size.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/get-style-property/get-style-property.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/imagesloaded/Gruntfile.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.pkgd.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.pkgd.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/masonry/dist/masonry.pkgd.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/masonry/masonry.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/masonry/dist/masonry.pkgd.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/matches-selector/matches-selector.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/matches-selector/tests.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/outlayer/item.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bower/outlayer/outlayer.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/angular-route.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/tbay-logo-transparent.png" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:38 -0500
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/angular-masonry/angular-masonry.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/angularjs/angular_socket.io_services.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/angularjs/app.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/angularjs/ui-bootstrap-0.11.2.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/angular-route.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/angular-route.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/eventEmitter/EventEmitter.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/eventEmitter/EventEmitter.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/eventie/eventie.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/get-size/get-size.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/get-style-property/get-style-property.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/imagesloaded/Gruntfile.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.pkgd.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.pkgd.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/masonry/dist/masonry.pkgd.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/masonry/dist/masonry.pkgd.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/masonry/masonry.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/matches-selector/matches-selector.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/matches-selector/tests.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/outlayer/item.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/bower/outlayer/outlayer.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/assets/tbay-logo-transparent.png" for 127.0.0.1 at 2014-12-21 07:41:39 -0500
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+Processing by ProductsController#welcome as HTML
+  [1m[35mProduct Load (0.5ms)[0m  SELECT  "products".* FROM "products"   ORDER BY view desc LIMIT 5
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mCategory Load (0.2ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 6 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 5 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 3 LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 6]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 6 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT  "categories".* FROM "categories"  WHERE "categories"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCategory Load (0.1ms)[0m  SELECT  "categories".* FROM "categories"  WHERE "categories"."id" = 1 LIMIT 1
+  [1m[36mCategory Load (0.1ms)[0m  [1mSELECT "categories".* FROM "categories"[0m
+  Rendered products/welcome.html.erb within layouts/application (9.7ms)
+Completed 200 OK in 287ms (Views: 284.7ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/angular.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/angular-route.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/login.css" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/gallery.css" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bootstrap-sprockets.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/angular-masonry/angular-masonry.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/angularjs/angular_socket.io_services.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/angularjs/app.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/angularjs/mainController.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/angularjs/ui-bootstrap-0.11.2.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/angular-route.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/angular-route.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/angular.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/eventEmitter/EventEmitter.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/eventEmitter/EventEmitter.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/eventie/eventie.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/get-size/get-size.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/get-style-property/get-style-property.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/imagesloaded/Gruntfile.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.pkgd.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/imagesloaded/imagesloaded.pkgd.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/masonry/dist/masonry.pkgd.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/masonry/dist/masonry.pkgd.min.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/masonry/masonry.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/matches-selector/matches-selector.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/matches-selector/tests.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/outlayer/item.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/bower/outlayer/outlayer.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:45 -0500
+
+
+Started GET "/assets/categories.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:46 -0500
+
+
+Started GET "/assets/products.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:46 -0500
+
+
+Started GET "/assets/static_pages.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:46 -0500
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-21 07:41:46 -0500
+
+
+Started GET "/assets/tbay-logo-transparent.png" for 127.0.0.1 at 2014-12-21 07:41:46 -0500
+
+
+Started GET "/products" for 127.0.0.1 at 2014-12-21 07:41:46 -0500
+Processing by ProductsController#index as HTML
+  [1m[35mProduct Load (0.3ms)[0m  SELECT "products".* FROM "products"
+Completed 200 OK in 8ms (Views: 7.5ms | ActiveRecord: 0.3ms)
